@@ -15,22 +15,41 @@ int moonPhase(int Yr, int Mth, int Dy){
     //int A,B,C, daySince, sinceNewMoon, dayReal;
     //float cycleDay;
     //long double finalNum;
-    int A, B, C, E, F, New;
-    float numNew, daysIn;
-    long double JD;
+    int A, B, C, E, F, sinceNew;
+    float numNew, lastNew;
+    long double justDays;
     
     A = Yr/100;
     B = A/4;
     C = 2-A+B;
     E = 365.25 * (Yr+4716);
     F = 30.6001 * (Mth+1);
-    JD = C+Dy+E+F-1524.5;
+    justDays = C+Dy+E+F-1524.5;
 
-    New = (JD-2451549.5);
-    numNew = New/29.53;
-    daysIn = (numNew-floor(numNew))*29.53;
+    sinceNew = (justDays-2451549.5);
+    numNew = sinceNew/29.53;
+    lastNew = (numNew-floor(numNew))*29.53;
 
-    return daysIn;
+    return lastNew;
+}
+
+string dayWord(int gDay){
+
+    string dayWrd;
+
+    switch (gDay)
+    {
+    case 1:
+    case 21:
+    case 31:        dayWrd = "st";  break;
+    case 2:
+    case 22:        dayWrd = "nd";  break;
+    case 3:
+    case 23:        dayWrd = "rd";  break;
+    
+    default:        dayWrd = "th";  break;  
+    }
+    return dayWrd;
 }
 
 int main()
@@ -41,7 +60,7 @@ int main()
     {
         int sec, min, hour, hourTw;
         int day,month,year;
-        string am_pm, monthWrd, dayWrd;
+        string am_pm, monthWrd;
 
         //* Get the time the C way
         time_t totalSec = time(0);
@@ -78,24 +97,13 @@ int main()
         default:        monthWrd = "a month";
         }
 
-        switch (day)
-        {
-        case 1:
-        case 21:
-        case 31:        dayWrd = "st";  break;
-        case 2:
-        case 22:        dayWrd = "nd";  break;
-        case 3:
-        case 23:        dayWrd = "rd";  break;
 
-        default:        dayWrd = "th";  break;  
-        }
 
         if (sec == prevSec+1 || (prevSec == 59 && sec ==0))
         {
             system("clear");
             
-            cout << "It is the " << day << dayWrd << " of " << monthWrd << ", " << year << endl;
+            cout << "It is the " << day << dayWord(day) << " of " << monthWrd << ", " << year << endl;
             cout << "The Time in 12Hr:\t" <<
             (hourTw < 10 ? "0":"") << hourTw << ":" << //? Add a 0 if
             (min<10 ? "0":"") << min << ":" <<    //? its less than 10 (01,02)
@@ -106,7 +114,9 @@ int main()
             (min<10 ? "0":"") << min << ":" <<
             (sec<10 ? "0":"") << sec << endl;
 
-            cout << moonPhase(year, month, day) << " since new Moon." << endl;
+            int moomPhase = moonPhase(year, month, day);
+            cout << moomPhase << " days since new Moon. On "<< day - moomPhase << dayWord(day-moomPhase) 
+            <<".\nNext one is in "<< 29 - moomPhase << " days." << endl;
 
         }
         prevSec = sec;
