@@ -7,7 +7,7 @@ using namespace std;
 
 /*
 * Text clock
-! a < b ? x:y == statemet ? ifTrue:ifFalse
+! a < b ? x:y == statement ? ifTrue:ifFalse
 */
 
 int moonPhase(int Yr, int Mth, int Dy){
@@ -115,8 +115,8 @@ int main()
             (sec<10 ? "0":"") << sec << endl;
 
             int moomPhase = moonPhase(year, month, day);
-            cout << moomPhase << " days since new Moon. On "<< day - moomPhase << dayWord(day-moomPhase) 
-            <<".\nNext one is in "<< 29 - moomPhase << " days." << endl;
+            cout << moomPhase << " days since new Moon."  
+            <<"\nNext one is in "<< 29 - moomPhase << " days." << endl;
 
         }
         prevSec = sec;

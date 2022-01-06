@@ -12,7 +12,7 @@ def moon_phase(year, month, day) :
     #jd is total days elapsed
     jd /= 29.5305882;
     #divide by the moon cycle
-    b = (int) jd;
+    b = jd;
     #int(jd) -> b, take integer part of jd
     jd -= b;
     #subtract integer part to leave fractional part of original jd
