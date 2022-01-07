@@ -52,6 +52,30 @@ string dayWord(int gDay){
     return dayWrd;
 }
 
+string monthWord(int mDay){
+    
+    string monthWrd;
+
+    switch (mDay)
+        {
+        case 1:         monthWrd = "January";   break;
+        case 2:         monthWrd = "Febuary";   break;
+        case 3:         monthWrd = "March";     break;
+        case 4:         monthWrd = "April";     break;
+        case 5:         monthWrd = "May";       break;
+        case 6:         monthWrd = "June";      break;
+        case 7:         monthWrd = "July";      break;
+        case 8:         monthWrd = "August";    break;
+        case 9:         monthWrd = "September"; break;
+        case 10:        monthWrd = "October";   break;
+        case 11:        monthWrd = "November";  break;
+        case 12:        monthWrd = "December";  break;
+
+        default:        monthWrd = "a month";
+        }
+    return monthWrd;
+}
+
 int main()
 {
     int prevSec = 0;
@@ -79,23 +103,6 @@ int main()
         else {am_pm = "AM";}
         hourTw = hour > 12 ? hour - 12 : hour; //? 12 hour clock
 
-        switch (month)
-        {
-        case 1:         monthWrd = "January";   break;
-        case 2:         monthWrd = "Febuary";   break;
-        case 3:         monthWrd = "March";     break;
-        case 4:         monthWrd = "April";     break;
-        case 5:         monthWrd = "May";       break;
-        case 6:         monthWrd = "June";      break;
-        case 7:         monthWrd = "July";      break;
-        case 8:         monthWrd = "August";    break;
-        case 9:         monthWrd = "September"; break;
-        case 10:        monthWrd = "October";   break;
-        case 11:        monthWrd = "November";  break;
-        case 12:        monthWrd = "December";  break;
-
-        default:        monthWrd = "a month";
-        }
 
 
 
@@ -103,7 +110,7 @@ int main()
         {
             system("clear");
             
-            cout << "It is the " << day << dayWord(day) << " of " << monthWrd << ", " << year << endl;
+            cout << "It is the " << day << dayWord(day) << " of " << monthWord(month) << ", " << year << endl;
             cout << "The Time in 12Hr:\t" <<
             (hourTw < 10 ? "0":"") << hourTw << ":" << //? Add a 0 if
             (min<10 ? "0":"") << min << ":" <<    //? its less than 10 (01,02)
