@@ -160,21 +160,25 @@ void Game::trasformTetromino(int key)
     switch (key)
     {
     case KEY_UP:
+    case 0x91: // W 
         tetromino.rotate();
         if (collideWithTetrominoes())
             tetromino.rotate(true);
         break;
     case KEY_RIGHT:
+    case 0xa0: // D
         tetromino.moveRt();
         if (collideWithTetrominoes())
             tetromino.moveLt();
         break;
     case KEY_LEFT:
+    case 0x9e: // A
         tetromino.moveLt();
         if (collideWithTetrominoes())
             tetromino.moveRt();
         break;
     case KEY_DOWN:
+    case 0x9f: // S
         tetromino.moveDwn();
         if (collideWithTetrominoes())
             tetromino.moveUp();
